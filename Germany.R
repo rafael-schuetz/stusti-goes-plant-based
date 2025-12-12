@@ -67,7 +67,7 @@ Konsum <- tibble(
 # https://www-genesis.destatis.de/datenbank/online/statistic/41331/details
 
 slaughter_statistics <- read_delim(
-  "Germany-slaughter/41331-0001_de_flat.csv",
+  "data/41331-0001_de_flat.csv",
   delim = ";"
   )
 
@@ -75,7 +75,7 @@ slaughter_statistics <- read_delim(
 # Statistisches Bundesamt: Geflügelschlachtereien, Geschlachtete Tiere, Schlachtmenge
 # https://www-genesis.destatis.de/genesis/online?sequenz=tabelleErgebnis&&selectionname=41322-0001
 slaughter_statistics_poultry <- read_delim(
-  "Germany-slaughter/41322-0001_de_flat.csv",
+  "data/41322-0001_de_flat.csv",
   delim = ";"
 )
 
@@ -155,7 +155,7 @@ slaughter_statistics <- slaughter_statistics %>%
     )
     )
 
-data <- slaughter_statistics %>% 
+animals_killed <- slaughter_statistics %>% 
   full_join(Konsum) %>% 
   mutate(
     Gewicht = if_else(Tierart == "Fisch", fish_weight, Gewicht),
